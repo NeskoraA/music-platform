@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/NeskoraA/music-platform-config.git
+          clone-on-start: true
+          default-label: main
+
+server:
+  port: 8888
