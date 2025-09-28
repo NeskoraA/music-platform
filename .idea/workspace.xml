@@ -4,20 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb32d3f7-4712-4ae7-9257-cddd998d474b" name="Changes" comment="" />
+    <list default="true" id="fb32d3f7-4712-4ae7-9257-cddd998d474b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/config/SpotifyConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/config/WebClientConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/controller/MusicController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/model/SpotifyTokenResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/service/SpotifyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/music-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="33I7cjuhJOLOsIXLjlPnFAc7Jar" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -32,7 +58,10 @@
     "Spring Boot.ApiGatewayApplication.executor": "Run",
     "Spring Boot.ConfigServerApplication.executor": "Run",
     "Spring Boot.DiscoveryServerApplication.executor": "Run",
+    "Spring Boot.MusicServiceApplication.executor": "Run",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-22",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/music-platform",
     "node.js.detected.package.eslint": "true",
@@ -40,6 +69,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "spring",
     "vue.rearranger.settings.migration": "true"
@@ -77,6 +109,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MusicServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="music-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.musicplatform.musicservice.MusicServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -102,7 +141,10 @@
       <workItem from="1758993690414" duration="15000" />
       <workItem from="1758993750922" duration="22000" />
       <workItem from="1758993806514" duration="578000" />
-      <workItem from="1758994393713" duration="4295000" />
+      <workItem from="1758994393713" duration="8363000" />
+      <workItem from="1759069114948" duration="15000" />
+      <workItem from="1759069172191" duration="93000" />
+      <workItem from="1759069347152" duration="15176000" />
     </task>
     <servers />
   </component>
