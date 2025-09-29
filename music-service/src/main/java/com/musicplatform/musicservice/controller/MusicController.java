@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @Slf4j
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/music")
 @RequiredArgsConstructor
@@ -37,9 +38,13 @@ public class MusicController {
 
     @GetMapping("/search/artists")
     @Operation(summary = "Поиск артистов по названию")
-    public Mono<ResponseEntity<String>> searchArtists(@RequestParam String q) {
-        log.info("Artist search request for: {}", q);
-        return spotifyService.searchArtists(q)
+    public Mono<ResponseEntity<String>> searchArtists(
+            @RequestParam String q,
+            @RequestParam(defaultValue = "0") int offset,
+            @RequestParam(defaultValue = "20") int limit) {
+
+        log.info("Artist search request for: {} (offset: {}, limit: {})", q, offset, limit);
+        return spotifyService.searchArtists(q, offset, limit)
                 .map(ResponseEntity::ok)
                 .doOnSuccess(response -> log.info("Artist search completed successfully"))
                 .doOnError(error -> log.error("Artist search failed: {}", error.getMessage()));
@@ -47,9 +52,13 @@ public class MusicController {
 
     @GetMapping("/search/albums")
     @Operation(summary = "Поиск альбомов по названию")
-    public Mono<ResponseEntity<String>> searchAlbums(@RequestParam String q) {
-        log.info("Album search request for: {}", q);
-        return spotifyService.searchAlbums(q)
+    public Mono<ResponseEntity<String>> searchAlbums(
+            @RequestParam String q,
+            @RequestParam(defaultValue = "0") int offset,
+            @RequestParam(defaultValue = "20") int limit) {
+
+        log.info("Album search request for: {} (offset: {}, limit: {})", q, offset, limit);
+        return spotifyService.searchAlbums(q, offset, limit)
                 .map(ResponseEntity::ok)
                 .doOnSuccess(response -> log.info("Album search completed successfully"))
                 .doOnError(error -> log.error("Album search failed: {}", error.getMessage()));
@@ -57,9 +66,13 @@ public class MusicController {
 
     @GetMapping("/search/tracks")
     @Operation(summary = "Поиск треков по названию")
-    public Mono<ResponseEntity<String>> searchTracks(@RequestParam String q) {
-        log.info("Track search request for: {}", q);
-        return spotifyService.searchTracks(q)
+    public Mono<ResponseEntity<String>> searchTracks(
+            @RequestParam String q,
+            @RequestParam(defaultValue = "0") int offset,
+            @RequestParam(defaultValue = "20") int limit) {
+
+        log.info("Track search request for: {} (offset: {}, limit: {})", q, offset, limit);
+        return spotifyService.searchTracks(q, offset, limit)
                 .map(ResponseEntity::ok)
                 .doOnSuccess(response -> log.info("Track search completed successfully"))
                 .doOnError(error -> log.error("Track search failed: {}", error.getMessage()));
@@ -67,9 +80,13 @@ public class MusicController {
 
     @GetMapping("/search")
     @Operation(summary = "Универсальный поиск (артисты, альбомы, треки)")
-    public Mono<ResponseEntity<String>> searchAll(@RequestParam String q) {
-        log.info("Universal search request for: {}", q);
-        return spotifyService.searchAll(q)
+    public Mono<ResponseEntity<String>> searchAll(
+            @RequestParam String q,
+            @RequestParam(defaultValue = "0") int offset,
+            @RequestParam(defaultValue = "20") int limit) {
+
+        log.info("Universal search request for: {} (offset: {}, limit: {})", q, offset, limit);
+        return spotifyService.searchAll(q, offset, limit)
                 .map(ResponseEntity::ok)
                 .doOnSuccess(response -> log.info("Universal search completed successfully"))
                 .doOnError(error -> log.error("Universal search failed: {}", error.getMessage()));

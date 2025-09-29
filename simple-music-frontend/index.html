@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Search</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        #searchInput {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            min-width: 200px;
+        }
+        #searchType {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+        }
+        button {
+            padding: 15px 25px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .loading {
+            background: #e3f2fd;
+            color: #1976d2;
+            text-align: center;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        .success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        .results {
+            margin-top: 30px;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .track-card, .artist-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            background: #fafafa;
+            transition: transform 0.2s;
+        }
+        .track-card:hover, .artist-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .card-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .card-info {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .audio-preview {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .no-results {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            font-size: 18px;
+        }
+        .health-check {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .health-ok {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        .health-error {
+            background: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎵 Music Search</h1>
+
+    <div id="healthStatus" class="health-check">
+        Checking backend connection...
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Enter song or artist name..." />
+        <select id="searchType">
+            <option value="tracks">Search Tracks</option>
+            <option value="artists">Search Artists</option>
+        </select>
+        <button onclick="performSearch()" id="searchBtn">Search</button>
+    </div>
+
+    <div id="status"></div>
+
+    <div id="results" class="results">
+        <div class="no-results">
+            Enter a search term to find music
+        </div>
+    </div>
+</div>
+
+<script>
+    const API_BASE = 'http://localhost:8081/api/music';
+
+    // Проверка доступности бэкенда
+    async function checkBackendHealth() {
+        const healthDiv = document.getElementById('healthStatus');
+        try {
+            const response = await fetch(`${API_BASE}/health`);
+            if (response.ok) {
+                healthDiv.innerHTML = '✅ Backend connected on port 8081';
+                healthDiv.className = 'health-check health-ok';
+                return true;
+            } else {
+                throw new Error(`HTTP ${response.status}`);
+            }
+        } catch (error) {
+            console.error('Health check failed:', error);
+            healthDiv.innerHTML = `
+                ❌ Cannot connect to Music Service
+                <br><small>Error: ${error.message}</small>
+                <br><br>
+                <strong>Make sure:</strong>
+                <ul style="text-align: left; margin: 10px;">
+                    <li>Music Service is running on port 8081</li>
+                    <li>CORS is configured in MusicController</li>
+                    <li>No firewall blocking the connection</li>
+                </ul>
+            `;
+            healthDiv.className = 'health-check health-error';
+            return false;
+        }
+    }
+
+    // Выполнение поиска
+    async function performSearch() {
+        const query = document.getElementById('searchInput').value.trim();
+        const type = document.getElementById('searchType').value;
+        const searchBtn = document.getElementById('searchBtn');
+
+        if (!query) {
+            showStatus('Please enter a search term', 'error');
+            return;
+        }
+
+        searchBtn.disabled = true;
+        searchBtn.textContent = 'Searching...';
+        showStatus(`Searching for ${type}: "${query}"`, 'loading');
+        clearResults();
+
+        try {
+            // Используем параметр 'q' вместо 'query' как в вашем бэкенде
+            const url = `${API_BASE}/search/${type}?q=${encodeURIComponent(query)}`;
+            console.log('API Request:', url);
+
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            displayResults(data, type);
+            showStatus(`Found ${getResultCount(data, type)} results`, 'success');
+
+        } catch (error) {
+            console.error('Search error:', error);
+            showStatus(`Search failed: ${error.message}`, 'error');
+            showNoResults();
+        } finally {
+            searchBtn.disabled = false;
+            searchBtn.textContent = 'Search';
+        }
+    }
+
+    function getResultCount(data, type) {
+        if (type === 'tracks') {
+            const tracks = data.tracks?.items || [];
+            return tracks.length;
+        } else if (type === 'artists') {
+            const artists = data.artists?.items || [];
+            return artists.length;
+        }
+        return 0;
+    }
+
+    function displayResults(data, type) {
+        const resultsDiv = document.getElementById('results');
+
+        if (type === 'tracks') {
+            const tracks = data.tracks?.items || [];
+            if (tracks.length === 0) {
+                showNoResults();
+                return;
+            }
+
+            let html = '<h2>🎵 Search Results - Tracks</h2><div class="results-grid">';
+
+            tracks.forEach(track => {
+                const imageUrl = track.album?.images?.[0]?.url || '';
+                const artists = track.artists?.map(artist => artist.name).join(', ') || 'Unknown Artist';
+                const albumName = track.album?.name || 'Unknown Album';
+
+                html += `
+                    <div class="track-card">
+                        ${imageUrl ? `<img src="${imageUrl}" alt="${albumName}" class="card-image">` : ''}
+                        <div class="card-title">${track.name}</div>
+                        <div class="card-info">Artist: ${artists}</div>
+                        <div class="card-info">Album: ${albumName}</div>
+                        ${track.preview_url ? `
+                            <audio controls class="audio-preview">
+                                <source src="${track.preview_url}" type="audio/mpeg">
+                            </audio>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            resultsDiv.innerHTML = html;
+
+        } else if (type === 'artists') {
+            const artists = data.artists?.items || [];
+            if (artists.length === 0) {
+                showNoResults();
+                return;
+            }
+
+            let html = '<h2>🎤 Search Results - Artists</h2><div class="results-grid">';
+
+            artists.forEach(artist => {
+                const imageUrl = artist.images?.[0]?.url || '';
+                const followers = artist.followers?.total?.toLocaleString() || '0';
+                const genres = artist.genres?.slice(0, 3).join(', ') || 'No genres listed';
+
+                html += `
+                    <div class="artist-card">
+                        ${imageUrl ? `<img src="${imageUrl}" alt="${artist.name}" class="card-image">` : ''}
+                        <div class="card-title">${artist.name}</div>
+                        <div class="card-info">Followers: ${followers}</div>
+                        <div class="card-info">Genres: ${genres}</div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            resultsDiv.innerHTML = html;
+        }
+    }
+
+    function showStatus(message, type) {
+        const statusDiv = document.getElementById('status');
+        statusDiv.innerHTML = `<div class="${type}">${message}</div>`;
+    }
+
+    function clearResults() {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '';
+    }
+
+    function showNoResults() {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '<div class="no-results">No results found. Try a different search term.</div>';
+    }
+
+    // Поиск по нажатию Enter
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    // Запускаем проверку бэкенда при загрузке
+    window.addEventListener('load', checkBackendHealth);
+</script>
+</body>
+</html>

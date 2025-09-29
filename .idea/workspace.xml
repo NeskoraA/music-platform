@@ -6,6 +6,40 @@
   <component name="ChangeListManager">
     <list default="true" id="fb32d3f7-4712-4ae7-9257-cddd998d474b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-server/src/test/java/com/musicplatform/discoveryserver/DiscoveryServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-server/src/test/java/com/musicplatform/discoveryserver/DiscoveryServerApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/AlbumList/AlbumList.css" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/AlbumList/AlbumList.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/AlbumList/AlbumList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/AlbumList/AlbumList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/ArtistList/ArtistList.css" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/ArtistList/ArtistList.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/ArtistList/ArtistList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/ArtistList/ArtistList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/Background/AudioVisualizer.css" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/Background/AudioVisualizer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/Background/AudioVisualizer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/Background/AudioVisualizer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/Background/BackgroundParticles.css" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/Background/BackgroundParticles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/Background/BackgroundParticles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/Background/BackgroundParticles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/Loading/LoadingSpinner.css" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/Loading/LoadingSpinner.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/Loading/LoadingSpinner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/Loading/LoadingSpinner.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/Pagination/Pagination.css" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/Pagination/Pagination.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/Pagination/Pagination.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/Pagination/Pagination.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/SearchBar/SearchBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/SearchBar/SearchBar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/SearchBar/SearchBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/SearchBar/SearchBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/TrackList/TrackList.css" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/TrackList/TrackList.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/components/TrackList/TrackList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/components/TrackList/TrackList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/src/services/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/src/services/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-frontend/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/music-frontend/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/music-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/config/WebClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/config/WebClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/controller/MusicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/controller/MusicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/service/SpotifyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/music-service/src/main/java/com/musicplatform/musicservice/service/SpotifyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/music-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-service/src/test/java/com/musicplatform/musicservice/MusicServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/music-service/src/test/java/com/musicplatform/musicservice/MusicServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple-music-frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/simple-music-frontend/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +73,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -58,14 +93,19 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "spring",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\music-platform\music-react-frontend" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -77,6 +117,9 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/music-platform/simple-music-frontend/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.musicplatform.apigateway.ApiGatewayApplication" />
@@ -105,6 +148,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -133,7 +181,11 @@
       <workItem from="1758994393713" duration="8363000" />
       <workItem from="1759069114948" duration="15000" />
       <workItem from="1759069172191" duration="93000" />
-      <workItem from="1759069347152" duration="17412000" />
+      <workItem from="1759069347152" duration="19137000" />
+      <workItem from="1759095192573" duration="3106000" />
+      <workItem from="1759098381130" duration="471000" />
+      <workItem from="1759140919995" duration="5734000" />
+      <workItem from="1759146794592" duration="22241000" />
     </task>
     <servers />
   </component>

@@ -2,20 +2,37 @@ import React from 'react';
 import { Music } from 'lucide-react';
 import './LoadingSpinner.css';
 
-const LoadingSpinner = ({ size = 'medium', text = 'Loading...' }) => {
+const LoadingSpinner = ({
+                            size = 'medium',
+                            text = 'Loading...',
+                            subtext = '',
+                            type = 'loading'
+                        }) => {
     return (
-        <div className={`loading-spinner ${size}`}>
+        <div className={`loading-spinner ${size} ${type}`}>
             <div className="spinner-container">
-                <div className="spinner-orb">
+                {/* Центральная иконка */}
+                <div className="spinner-core">
                     <Music className="spinner-icon" />
                 </div>
-                <div className="spinner-rings">
-                    <div className="ring ring-1"></div>
-                    <div className="ring ring-2"></div>
-                    <div className="ring ring-3"></div>
+
+                {/* Орбиты */}
+                <div className="spinner-orbit orbit-1">
+                    <div className="orbit-particle particle-1"></div>
+                </div>
+                <div className="spinner-orbit orbit-2">
+                    <div className="orbit-particle particle-2"></div>
+                </div>
+                <div className="spinner-orbit orbit-3">
+                    <div className="orbit-particle particle-3"></div>
                 </div>
             </div>
-            {text && <span className="loading-text">{text}</span>}
+
+            {/* Текст */}
+            <div className="loading-content">
+                <div className="loading-text">{text}</div>
+                {subtext && <div className="loading-subtext">{subtext}</div>}
+            </div>
         </div>
     );
 };

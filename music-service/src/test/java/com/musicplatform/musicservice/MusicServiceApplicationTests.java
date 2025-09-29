@@ -9,5 +9,4 @@ class MusicServiceApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

@@ -39,10 +39,8 @@ public class SpotifyService {
 
         String credentials = spotifyConfig.getClientId() + ":" + spotifyConfig.getClientSecret();
         String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes());
-
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
         formData.add("grant_type", "client_credentials");
-
         return webClient.post()
                 .uri(spotifyConfig.getAuthUrl())
                 .header(HttpHeaders.AUTHORIZATION, "Basic " + encodedCredentials)
@@ -66,15 +64,16 @@ public class SpotifyService {
                 });
     }
 
-    // Поиск артистов по названию
-    public Mono<String> searchArtists(String artistName) {
+    // Поиск артистов по названию с пагинацией
+    public Mono<String> searchArtists(String artistName, int offset, int limit) {
         return getAccessToken()
                 .flatMap(token -> {
                     try {
                         String encodedQuery = java.net.URLEncoder.encode(artistName, java.nio.charset.StandardCharsets.UTF_8);
-                        String url = spotifyConfig.getApiUrl() + "/search?q=" + encodedQuery + "&type=artist&limit=10";
+                        String url = spotifyConfig.getApiUrl() + "/search?q=" + encodedQuery +
+                                "&type=artist&limit=" + limit + "&offset=" + offset;
 
-                        log.info("Searching artists: {}", url);
+                        log.info("Searching artists: {} (offset: {}, limit: {})", url, offset, limit);
 
                         return webClient.get()
                                 .uri(url)
@@ -94,19 +93,20 @@ public class SpotifyService {
                         return Mono.error(e);
                     }
                 })
-                .doOnSuccess(artists -> log.info("Successfully searched artists: {}", artistName))
+                .doOnSuccess(artists -> log.info("Successfully searched artists: {} (offset: {}, limit: {})", artistName, offset, limit))
                 .doOnError(error -> log.error("Error searching artists: {}", error.getMessage()));
     }
 
-    // Поиск альбомов по названию
-    public Mono<String> searchAlbums(String albumName) {
+    // Поиск альбомов по названию с пагинацией
+    public Mono<String> searchAlbums(String albumName, int offset, int limit) {
         return getAccessToken()
                 .flatMap(token -> {
                     try {
                         String encodedQuery = java.net.URLEncoder.encode(albumName, java.nio.charset.StandardCharsets.UTF_8);
-                        String url = spotifyConfig.getApiUrl() + "/search?q=" + encodedQuery + "&type=album&limit=10";
+                        String url = spotifyConfig.getApiUrl() + "/search?q=" + encodedQuery +
+                                "&type=album&limit=" + limit + "&offset=" + offset;
 
-                        log.info("Searching albums: {}", url);
+                        log.info("Searching albums: {} (offset: {}, limit: {})", url, offset, limit);
 
                         return webClient.get()
                                 .uri(url)
@@ -126,19 +126,20 @@ public class SpotifyService {
                         return Mono.error(e);
                     }
                 })
-                .doOnSuccess(albums -> log.info("Successfully searched albums: {}", albumName))
+                .doOnSuccess(albums -> log.info("Successfully searched albums: {} (offset: {}, limit: {})", albumName, offset, limit))
                 .doOnError(error -> log.error("Error searching albums: {}", error.getMessage()));
     }
 
-    // Поиск треков по названию
-    public Mono<String> searchTracks(String trackName) {
+    // Поиск треков по названию с пагинацией
+    public Mono<String> searchTracks(String trackName, int offset, int limit) {
         return getAccessToken()
                 .flatMap(token -> {
                     try {
                         String encodedQuery = java.net.URLEncoder.encode(trackName, java.nio.charset.StandardCharsets.UTF_8);
-                        String url = spotifyConfig.getApiUrl() + "/search?q=" + encodedQuery + "&type=track&limit=10";
+                        String url = spotifyConfig.getApiUrl() + "/search?q=" + encodedQuery +
+                                "&type=track&limit=" + limit + "&offset=" + offset;
 
-                        log.info("Searching tracks: {}", url);
+                        log.info("Searching tracks: {} (offset: {}, limit: {})", url, offset, limit);
 
                         return webClient.get()
                                 .uri(url)
@@ -158,19 +159,20 @@ public class SpotifyService {
                         return Mono.error(e);
                     }
                 })
-                .doOnSuccess(tracks -> log.info("Successfully searched tracks: {}", trackName))
+                .doOnSuccess(tracks -> log.info("Successfully searched tracks: {} (offset: {}, limit: {})", trackName, offset, limit))
                 .doOnError(error -> log.error("Error searching tracks: {}", error.getMessage()));
     }
 
-    // Универсальный поиск (все типы)
-    public Mono<String> searchAll(String query) {
+    // Универсальный поиск (все типы) с пагинацией
+    public Mono<String> searchAll(String query, int offset, int limit) {
         return getAccessToken()
                 .flatMap(token -> {
                     try {
                         String encodedQuery = java.net.URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8);
-                        String url = spotifyConfig.getApiUrl() + "/search?q=" + encodedQuery + "&type=artist,album,track&limit=5";
+                        String url = spotifyConfig.getApiUrl() + "/search?q=" + encodedQuery +
+                                "&type=artist,album,track&limit=" + limit + "&offset=" + offset;
 
-                        log.info("Universal search: {}", url);
+                        log.info("Universal search: {} (offset: {}, limit: {})", url, offset, limit);
 
                         return webClient.get()
                                 .uri(url)
@@ -190,7 +192,7 @@ public class SpotifyService {
                         return Mono.error(e);
                     }
                 })
-                .doOnSuccess(results -> log.info("Successfully searched: {}", query))
+                .doOnSuccess(results -> log.info("Successfully searched: {} (offset: {}, limit: {})", query, offset, limit))
                 .doOnError(error -> log.error("Error searching: {}", error.getMessage()));
     }
 
