@@ -1,0 +1,218 @@
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.loading-spinner.small {
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.loading-spinner.large {
+    padding: 3rem;
+    gap: 2rem;
+}
+
+.spinner-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner-orb {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: float 3s ease-in-out infinite;
+    box-shadow: 0 8px 25px rgba(29, 185, 84, 0.4);
+    z-index: 2;
+    position: relative;
+}
+
+.spinner-icon {
+    color: white;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.spinner-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ring {
+    position: absolute;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+}
+
+.ring-1 {
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+    border-top-color: var(--primary);
+}
+
+.ring-2 {
+    width: 100px;
+    height: 100px;
+    animation-delay: 0.2s;
+    border-top-color: rgba(29, 185, 84, 0.7);
+}
+
+.ring-3 {
+    width: 120px;
+    height: 120px;
+    animation-delay: 0.4s;
+    border-top-color: rgba(29, 185, 84, 0.4);
+}
+
+.loading-text {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+.loading-spinner.small .spinner-orb {
+    width: 40px;
+    height: 40px;
+}
+
+.loading-spinner.small .spinner-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.loading-spinner.small .ring-1 {
+    width: 60px;
+    height: 60px;
+}
+
+.loading-spinner.small .ring-2 {
+    width: 80px;
+    height: 80px;
+}
+
+.loading-spinner.small .ring-3 {
+    width: 100px;
+    height: 100px;
+}
+
+.loading-spinner.small .loading-text {
+    font-size: 0.875rem;
+}
+
+.loading-spinner.large .spinner-orb {
+    width: 80px;
+    height: 80px;
+}
+
+.loading-spinner.large .spinner-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.loading-spinner.large .ring-1 {
+    width: 120px;
+    height: 120px;
+}
+
+.loading-spinner.large .ring-2 {
+    width: 160px;
+    height: 160px;
+}
+
+.loading-spinner.large .ring-3 {
+    width: 200px;
+    height: 200px;
+}
+
+.loading-spinner.large .loading-text {
+    font-size: 1.25rem;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Dark mode variant */
+.loading-spinner.dark .spinner-orb {
+    background: linear-gradient(135deg, #333, #555);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.loading-spinner.dark .ring {
+    border-top-color: #666;
+}
+
+/* Success state */
+.loading-spinner.success .spinner-orb {
+    background: linear-gradient(135deg, #00c853, #00e676);
+    animation: none;
+}
+
+.loading-spinner.success .spinner-icon {
+    animation: none;
+}
+
+.loading-spinner.success .ring {
+    animation: none;
+    border-top-color: #00c853;
+}
+
+@media (max-width: 768px) {
+    .loading-spinner {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+
+    .spinner-orb {
+        width: 50px;
+        height: 50px;
+    }
+
+    .ring-1 {
+        width: 70px;
+        height: 70px;
+    }
+
+    .ring-2 {
+        width: 90px;
+        height: 90px;
+    }
+
+    .ring-3 {
+        width: 110px;
+        height: 110px;
+    }
+}
